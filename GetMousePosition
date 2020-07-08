@@ -1,0 +1,24 @@
+// _Author_ : Vikrant Kumar Tufani
+// _Date_ : 8th July 2020
+
+// [Get MOUSE POSITION in Unity Scene]
+
+private void OnMouseDown()
+    {
+        mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
+        offset = gameObject.transform.position - GetMouseWorldPos();
+    }
+
+    private Vector3 GetMouseWorldPos()          // Get Mouse Position Code
+    {
+        mousepoint = Input.mousePosition;
+
+        mousepoint.z = mZCoord;
+
+        return Camera.main.ScreenToWorldPoint(mousepoint);
+    }
+
+    void OnMouseDrag()
+    {
+        transform.position = GetMouseWorldPos() + offset;
+    }
